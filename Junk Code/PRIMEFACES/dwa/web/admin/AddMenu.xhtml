@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+ 
+    <p:outputLabel value="This is Add Menu"/>
+   <h:form id="menuForm">
+            <p:panelGrid columns="2" >     
+            <f:facet name="header">
+                <p:outputLabel value="Menu form"/>
+            </f:facet>
+
+                <p:outputLabel value="Menu Name  "/><p:inputText value="#{menuController.currentMenu.menuName}"/>
+
+                <p:outputLabel value="Sub Menu Name "/><p:inputText value="#{menuController.currentMenu.subMenu}"/>
+                <p:outputLabel value="Page Id "/>
+                <p:selectOneMenu value="#{menuController.pageID}">
+
+                        <f:selectItem itemLabel="Select Page" itemValue="" noSelectionOption="true" />
+                        <c:forEach items="#{menuController.pageList}" var="page">
+                            <f:selectItem itemLabel="#{page.pageId}-#{page.pageName}" itemValue="#{page.pageId}" noSelectionOption="true" />
+                        </c:forEach>
+
+                  </p:selectOneMenu>
+
+               
+        
+            
+            <p:commandButton value="Save" action="#{menuController.save}" ajax="false" update="menuForm,menuTable"/>
+           
+         </p:panelGrid>
+        </h:form>
+        
+        <p:dataTable var="menu" value="#{menuController.menuList}" id="menuTable">
+            <p:column headerText="ID" sortBy="#{menu.menuId}">
+                <h:outputText value="#{menu.menuId}" />
+            </p:column>
+
+            <p:column headerText="Menu Name" sortBy="#{menu.menuName}">
+                <h:outputText value="#{menu.menuName}" />
+            </p:column>
+
+            <p:column headerText="Sub Menu">
+                <h:outputText value="#{menu.subMenu}" />
+            </p:column>
+
+            <p:column headerText="Page">
+                <h:outputText value="#{menu}" />
+            </p:column>
+
+           
+        </p:dataTable>
+</ui:composition>
+

@@ -1,0 +1,11 @@
+create database db_aayush;
+use db_aayush;
+create table student
+(
+    id int,
+    name varchar(40),
+    address varchar(40),
+    class int,
+    rn int,
+    primary key(id)
+    );

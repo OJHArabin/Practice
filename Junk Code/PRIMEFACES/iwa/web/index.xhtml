@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>    
+    </h:head>
+    <h:body >
+        <h3>Responsive</h3>
+        <h:form id="studentForm">
+            <p:panelGrid columns="2" >     
+            <f:facet name="header">
+                <p:outputLabel value="Student form"/>
+            </f:facet>
+
+                <p:outputLabel value="Name "/><p:inputText value="#{studentController.currentStudent.studentname}"/>
+                <p:outputLabel value="Address "/><p:inputText value="#{studentController.currentStudent.studentaddress}"/>
+                
+           
+            <p:commandButton value="Save" action="#{studentController.save}" ajax="true" update="studentForm,studentTable"/>
+            <p:commandButton value="View All" action="#{studentController.view}"/>
+         </p:panelGrid>
+        </h:form>
+        
+        <p:dataTable var="student" value="#{studentController.studentList}" id="studentTable">
+            <p:column headerText="Name" sortBy="#{student.studentname}">
+                <h:outputText value="#{student.studentname}" />
+            </p:column>
+
+            <p:column headerText="Address">
+                <h:outputText value="#{student.studentaddress}" />
+            </p:column>
+
+            <p:column headerText="ID">
+                <h:outputText value="#{student.studentid}" />
+            </p:column>
+
+      
+        </p:dataTable>
+    </h:body>
+</html>
+

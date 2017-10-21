@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <p:outputLabel value="This is Add Menu"/>
+   <h:form id="menuForm">
+            <p:panelGrid columns="2" >     
+            <f:facet name="header">
+                <p:outputLabel value="Menu form"/>
+            </f:facet>
+
+                <p:outputLabel value="Menu Name  "/><p:inputText value="#{menuController.currentMenu.menuName}"/>
+
+                <p:outputLabel value="Sub Menu Name "/><p:inputText value="#{menuController.currentMenu.subMenu}"/>
+
+            
+        
+            
+            <p:commandButton value="Save" action="#{menuController.save}" ajax="true" update="menuForm,menuTable"/>
+           
+         </p:panelGrid>
+        </h:form>
+        
+        <p:dataTable var="menu" value="#{menuController.menuList}" id="menuTable">
+            <p:column headerText="ID" sortBy="#{menu.menuId}">
+                <h:outputText value="#{menu.menuId}" />
+            </p:column>
+
+            <p:column headerText="Menu Name" sortBy="#{menu.menuName}">
+                <h:outputText value="#{menu.menuName}" />
+            </p:column>
+
+            <p:column headerText="Sub Menu">
+                <h:outputText value="#{menu.subMenu}" />
+            </p:column>
+
+            <p:column headerText="Page Id">
+                <h:outputText value="#{menu.pageId}" />
+            </p:column>
+
+           
+        </p:dataTable>
+</ui:composition>
+

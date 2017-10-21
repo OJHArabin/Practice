@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <p:outputLabel value="This is Add Page"/>
+   <h:form id="pageForm">
+            <p:panelGrid columns="2" >     
+            <f:facet name="header">
+                <p:outputLabel value="Page form"/>
+            </f:facet>
+
+                <p:outputLabel value="Page Name  "/><p:inputText value="#{pageController.currentPage.pageName}"/>
+                <p:outputLabel value="Page URL  "/><p:inputText value="#{pageController.currentPage.pageUrl}"/>
+                <p:outputLabel value="Page Content "/>
+                <p:editor id="editor" widgetVar="editorWidget" value="#{pageController.currentPage.pageContent}" width="500"/>
+
+            
+        
+            
+            <p:commandButton value="Save" action="#{pageController.save}" ajax="true" update="pageForm,pageTable"/>
+           
+         </p:panelGrid>
+        </h:form>
+        
+        <p:dataTable var="page" value="#{pageController.pageList}" id="pageTable">
+            <p:column headerText="ID" sortBy="#{page.pageId}">
+                <h:outputText value="#{page.pageId}" />
+            </p:column>
+
+            <p:column headerText="Page Name" sortBy="#{page.pageName}">
+                <h:outputText value="#{page.pageName}" />
+            </p:column>
+
+            <p:column headerText="Page Content">
+                <h:outputText value="#{page.pageContent}" />
+            </p:column>
+
+            <p:column headerText="Page URL">
+                <h:outputText value="#{page.pageUrl}" />
+            </p:column>
+
+           
+        </p:dataTable>
+</ui:composition>
+
